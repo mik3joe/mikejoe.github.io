@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Micheal J. A. Joseph — Media Coordinator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:       #1C2B4A;
+      --navy-deep:  #111C30;
+      --navy-mid:   #243356;
+      --gold:       #C9A84C;
+      --gold-lt:    #E8C96A;
+      --gold-dim:   #8A6E2F;
+      --cream:      #F9F5EC;
+      --cream-dark: #EDE6D6;
+      --white:      #FFFFFF;
+      --text:       #2A2A2A;
+      --text-mid:   #555555;
+      --text-lt:    #888888;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --font-mono:    'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--navy-deep);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(17, 28, 48, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Large decorative background text */
+    .hero::after {
+      content: 'MEDIA';
+      position: absolute;
+      right: -2rem;
+      bottom: -3rem;
+      font-family: var(--font-display);
+      font-size: 22vw;
+      font-weight: 700;
+      color: rgba(201, 168, 76, 0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 700;
+      line-height: 0.95;
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero-name span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(249, 245, 236, 0.65);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(249, 245, 236, 0.6);
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 1s forwards;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+      border: 2px solid var(--gold);
+      transition: background 0.25s, color 0.25s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: transparent;
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+      border: 2px solid rgba(249, 245, 236, 0.3);
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* Gold vertical line decoration */
+    .hero-line {
+      position: absolute;
+      right: 4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 40vh;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      opacity: 0.4;
+    }
+
+    /* ── STATS BAR ── */
+    .stats {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(201, 168, 76, 0.2);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      padding: 2.5rem 4rem;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(249, 245, 236, 0.5);
+    }
+
+    /* ── SECTIONS SHARED ── */
+    section {
+      padding: 7rem 4rem;
+      position: relative;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--navy);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(249, 245, 236, 0.7);
+      margin-bottom: 1.4rem;
+    }
+
+    .about-text p strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .skill-tag {
+      padding: 0.7rem 1rem;
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      font-size: 0.82rem;
+      color: rgba(249, 245, 236, 0.7);
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201, 168, 76, 0.05);
+    }
+
+    .skill-tag span {
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      margin-right: 0.5rem;
+    }
+
+    /* ── WORK / PORTFOLIO ── */
+    #work {
+      background: var(--navy-deep);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .work-card {
+      background: var(--navy);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+      group: true;
+    }
+
+    .work-card:hover {
+      border-color: rgba(201, 168, 76, 0.5);
+      transform: translateY(-4px);
+    }
+
+    .work-card-media {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--navy-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Placeholder pattern for empty media */
+    .work-card-media::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(201, 168, 76, 0.03) 0px,
+        rgba(201, 168, 76, 0.03) 1px,
+        transparent 1px,
+        transparent 20px
+      );
+    }
+
+    .work-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: opacity 0.3s, transform 0.4s;
+    }
+
+    .work-card:hover .work-card-media img {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+
+    .placeholder-icon {
+      font-size: 2.5rem;
+      opacity: 0.2;
+      z-index: 1;
+    }
+
+    .work-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(17, 28, 48, 0.9), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+    }
+
+    .work-card:hover .work-card-overlay {
+      opacity: 1;
+    }
+
+    .overlay-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .work-card-body {
+      padding: 1.4rem;
+    }
+
+    .work-card-category {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .work-card-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .work-card-desc {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: rgba(249, 245, 236, 0.5);
+    }
+
+    .work-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      padding: 0.25rem 0.65rem;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      color: rgba(249, 245, 236, 0.5);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── FEATURED PROJECT ── */
+    .work-card.featured {
+      grid-column: span 2;
+    }
+
+    .work-card.featured .work-card-media {
+      aspect-ratio: 21/9;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience {
+      background: var(--navy);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), rgba(201, 168, 76, 0.1));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.35rem;
+      top: 0.45rem;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+    }
+
+    .timeline-dates {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-role {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-org {
+      font-size: 0.85rem;
+      color: rgba(249, 245, 236, 0.5);
+      margin-bottom: 0.8rem;
+      font-style: italic;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(249, 245, 236, 0.6);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--navy-deep);
+      text-align: center;
+    }
+
+    #contact .section-label {
+      justify-content: center;
+    }
+
+    #contact .section-label::after { display: none; }
+
+    .contact-subtitle {
+      font-size: 1rem;
+      color: rgba(249, 245, 236, 0.5);
+      max-width: 480px;
+      margin: -2rem auto 3rem;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.8rem;
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      color: rgba(249, 245, 236, 0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201, 168, 76, 0.05);
+    }
+
+    .contact-link .icon { font-size: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-deep);
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(249, 245, 236, 0.3);
+      letter-spacing: 0.06em;
+    }
+
+    footer .gold-text { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 5rem 1.5rem; }
+      .stats { padding: 2rem 1.5rem; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card.featured { grid-column: span 1; }
+      .work-card.featured .work-card-media { aspect-ratio: 16/9; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">MJJ</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-line"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Media Coordinator &nbsp;·&nbsp; India &amp; Asia</p>
+      <h1 class="hero-name">Micheal<br /><span>J. A. Joseph</span></h1>
+      <p class="hero-title">Telling stories that cross borders &amp; languages.</p>
+      <p class="hero-desc">
+        7+ years producing multilingual media, photography, and digital content 
+        for global audiences across India and Asia. Fluent in production, 
+        localization, and the art of making things that feel local — wherever they land.
+      </p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stats-inner">
+      <div class="stat reveal">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-number">600+</div>
+        <div class="stat-label">Photos Produced</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Languages Localized</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-number">55+</div>
+        <div class="stat-label">Articles Published</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label reveal">About Me</p>
+      <h2 class="section-title reveal">Creative at heart.<br />Precise in execution.</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I'm a Media Coordinator based in Bengaluru, India, specializing in multilingual 
+            content production, localization, and large-scale photography for global audiences. 
+            I currently serve <strong>The Indian Society of The Church of Jesus Christ of Latter-day Saints</strong>, 
+            producing content that reaches communities across India and the wider Asia Area.
+          </p>
+          <p>
+            My work lives at the intersection of <strong>storytelling, technical craft, and cultural sensitivity</strong>. 
+            Whether I'm directing a multi-city photo shoot, managing post-production across 8 languages, 
+            or publishing localized articles through the Church Newsroom — I bring the same standard: 
+            quality that respects the audience it's made for.
+          </p>
+          <p>
+            I'm a self-driven learner who has built every skill through real production work — 
+            from Adobe Premiere Pro to vendor management to cross-cultural team collaboration. 
+            I'm rated <strong>"Met Expectations"</strong> in every performance review since 2022 
+            and I'm always building toward the next level.
+          </p>
+        </div>
+        <div>
+          <div class="skills-grid reveal">
+            <div class="skill-tag"><span>01</span>Video Production</div>
+            <div class="skill-tag"><span>02</span>Photography</div>
+            <div class="skill-tag"><span>03</span>Adobe Premiere Pro</div>
+            <div class="skill-tag"><span>04</span>DaVinci Resolve</div>
+            <div class="skill-tag"><span>05</span>Localization</div>
+            <div class="skill-tag"><span>06</span>Subtitling & Dubbing</div>
+            <div class="skill-tag"><span>07</span>Lightroom</div>
+            <div class="skill-tag"><span>08</span>Canva</div>
+            <div class="skill-tag"><span>09</span>Vendor Management</div>
+            <div class="skill-tag"><span>10</span>CMS Publishing</div>
+            <div class="skill-tag"><span>11</span>Project Coordination</div>
+            <div class="skill-tag"><span>12</span>8+ Languages</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-inner">
+      <p class="section-label reveal">Portfolio</p>
+      <h2 class="section-title reveal">Selected Work</h2>
+
+      <div class="work-grid">
+
+        <!-- FEATURED: Christmas Campaign -->
+        <div class="work-card featured reveal">
+          <div class="work-card-media">
+            <!-- REPLACE: add your Christmas campaign screenshot/still here -->
+            <!-- <img src="images/christmas-campaign.jpg" alt="Christmas 2025 Campaign" /> -->
+            <div class="placeholder-icon">🎬</div>
+            <div class="work-card-overlay">
+              <span class="overlay-label">View Project →</span>
+            </div>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-category">Video Production &nbsp;·&nbsp; Localization</p>
+            <h3 class="work-card-title">Christmas 2025 — Multi-Language Campaign</h3>
+            <p class="work-card-desc">
+              End-to-end post-production for 5 short videos dubbed and subtitled across 8 languages. 
+              Nearly 50 final exports, 30+ precision edits, delivered to global quality standards on time.
+            </p>
+            <div class="work-card-tags">
+              <span class="tag">Premiere Pro</span>
+              <span class="tag">8 Languages</span>
+              <span class="tag">50 Exports</span>
+              <span class="tag">QC</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- India Stock Photography -->
+        <div class="work-card reveal">
+          <div class="work-card-media">
+            <!-- REPLACE: add one of your stock photography images here -->
+            <!-- <img src="images/stock-photo.jpg" alt="India Stock Photography" /> -->
+            <div class="placeholder-icon">📷</div>
+            <div class="work-card-overlay">
+              <span class="overlay-label">View Gallery →</span>
+            </div>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-category">Photography</p>
+            <h3 class="work-card-title">India Stock Photography Project</h3>
+            <p class="work-card-desc">
+              600+ curated images across Bengaluru, Chennai, Hyderabad & Visakhapatnam 
+              for the Church's long-term localized media library.
+            </p>
+            <div class="work-card-tags">
+              <span class="tag">Lightroom</span>
+              <span class="tag">4 Cities</span>
+              <span class="tag">600+ Images</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- D&C Animation -->
+        <div class="work-card reveal">
+          <div class="work-card-media">
+            <!-- REPLACE: add a screenshot of the D&C title graphics here -->
+            <!-- <img src="images/dc-animation.jpg" alt="D&C Animation" /> -->
+            <div class="placeholder-icon">✦</div>
+            <div class="work-card-overlay">
+              <span class="overlay-label">View Project →</span>
+            </div>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-category">Motion Graphics &nbsp;·&nbsp; Production</p>
+            <h3 class="work-card-title">D&amp;C Animation — Full Production</h3>
+            <p class="work-card-desc">
+              Sourced dubbing vendor, coordinated TRL team for script review and audio mix, 
+              and personally executed all title graphics in Adobe.
+            </p>
+            <div class="work-card-tags">
+              <span class="tag">Adobe</span>
+              <span class="tag">Motion Graphics</span>
+              <span class="tag">Vendor Mgmt</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Welcome to the Church of Joy -->
+        <div class="work-card reveal">
+          <div class="work-card-media">
+            <!-- REPLACE: add a still from the Welcome to the Church of Joy video -->
+            <!-- <img src="images/church-of-joy.jpg" alt="Welcome to the Church of Joy" /> -->
+            <div class="placeholder-icon">🎥</div>
+            <div class="work-card-overlay">
+              <span class="overlay-label">View Project →</span>
+            </div>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-category">Localization &nbsp;·&nbsp; Creative Direction</p>
+            <h3 class="work-card-title">Welcome to the Church of Joy — India Adaptation</h3>
+            <p class="work-card-desc">
+              Refined script and updated visuals for Indian audience. 
+              Full localization of a global campaign for cultural relevance and authenticity.
+            </p>
+            <div class="work-card-tags">
+              <span class="tag">Adaptation</span>
+              <span class="tag">Scriptwriting</span>
+              <span class="tag">Post-Production</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CORUS Publishing -->
+        <div class="work-card reveal">
+          <div class="work-card-media">
+            <!-- REPLACE: add a screenshot of a published CORUS article -->
+            <!-- <img src="images/corus-article.jpg" alt="CORUS Publishing" /> -->
+            <div class="placeholder-icon">📰</div>
+            <div class="work-card-overlay">
+              <span class="overlay-label">View Articles →</span>
+            </div>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-category">Publishing &nbsp;·&nbsp; Localization</p>
+            <h3 class="work-card-title">Church Newsroom — Multilingual Publishing</h3>
+            <p class="work-card-desc">
+              55+ localized news articles published via CORUS in Urdu, Tamil, Telugu, and Hindi 
+              in support of the Public Affairs division.
+            </p>
+            <div class="work-card-tags">
+              <span class="tag">CORUS CMS</span>
+              <span class="tag">4 Languages</span>
+              <span class="tag">55+ Articles</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <p class="section-label reveal">Career</p>
+      <h2 class="section-title reveal">Experience</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <p class="timeline-dates">2023 — Present</p>
+          <h3 class="timeline-role">Media Coordinator</h3>
+          <p class="timeline-org">The Indian Society — Church of Jesus Christ of Latter-day Saints</p>
+          <p class="timeline-desc">
+            Leading multilingual video production, large-scale photography, digital publishing, 
+            and vendor management across India and the Asia Area. Delivering content for global 
+            campaigns localized across 8+ languages.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <p class="timeline-dates">2020 — 2023</p>
+          <h3 class="timeline-role">Mission Administrative Assistant</h3>
+          <p class="timeline-org">The Indian Society — Church of Jesus Christ of Latter-day Saints</p>
+          <p class="timeline-desc">
+            Managed finance, housing, FRRO government compliance for 27 foreign missionaries, 
+            technology, and social media across South India and Sri Lanka.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <p class="timeline-dates">2018 — 2020</p>
+          <h3 class="timeline-role">Missionary — Leadership Assignment</h3>
+          <p class="timeline-org">The Church of Jesus Christ of Latter-day Saints</p>
+          <p class="timeline-desc">
+            Full-time leadership role training volunteer teams, coordinating multi-location 
+            operations, organizing large-scale conferences, and managing organizational 
+            budgets under U.S. board oversight.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <p class="timeline-dates">2014 — 2018</p>
+          <h3 class="timeline-role">Telesales · Accounting · Office Admin · Sales</h3>
+          <p class="timeline-org">b-Easy Solutions | Gateway Systems Inc.</p>
+          <p class="timeline-desc">
+            Progressive cross-functional roles in B2B/B2C sales, accounting, 
+            and administration — building a strong foundation in client management 
+            and operational coordination.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Let's Connect</p>
+      <h2 class="section-title reveal">Open to new opportunities<br />across Asia.</h2>
+      <p class="contact-subtitle reveal">
+        Currently based in Bengaluru, India. Open to roles in Southeast &amp; East Asia. 
+        Let's talk about how I can bring your media projects to life.
+      </p>
+      <div class="contact-links reveal">
+        <a href="mailto:amj.joseph@gmail.com" class="contact-link">
+          <span class="icon">✉</span> amj.joseph@gmail.com
+        </a>
+        <a href="tel:+919019556606" class="contact-link">
+          <span class="icon">✆</span> +91-9019556606
+        </a>
+        <a href="https://linkedin.com/in/michealjjoseph" target="_blank" class="contact-link">
+          <span class="icon">in</span> LinkedIn Profile
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span class="gold-text">Micheal J. A. Joseph</span></p>
+    <p>Media Coordinator &nbsp;·&nbsp; Bengaluru, India</p>
+  </footer>
+
+  <!-- SCROLL REVEAL -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Smooth active nav state
+    const sections = document.querySelectorAll('section[id], div.stats');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id || '';
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+        a.style.opacity = a.getAttribute('href') === '#' + current ? '1' : '';
+      });
+    });
+  </script>
+
+</body>
+</html>
